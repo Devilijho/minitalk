@@ -6,7 +6,7 @@
 /*   By: safuente <safuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:40:48 by safuente          #+#    #+#             */
-/*   Updated: 2024/12/31 16:15:56 by safuente         ###   ########.fr       */
+/*   Updated: 2024/12/31 16:43:10 by safuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_recursive_power(int nb, int power)
 	return (nb);
 }
 
-void	bin_to_ascii(char *msg)
+char	bin_to_ascii(char *msg)
 {
 	int	i;
 	int	c;
@@ -41,7 +41,7 @@ void	bin_to_ascii(char *msg)
 		mul--;
 		i++;
 	}
-	ft_putchar(c);
+	return (c);
 }
 
 char	*msg_assembler(int c)
@@ -65,11 +65,14 @@ char	*msg_assembler(int c)
 void	signal_handler(int signal)
 {
 	char	*msg;
+	char	c;
 
 	msg = msg_assembler(signal);
 	if (msg != NULL)
 	{
-		bin_to_ascii(msg);
+		ft_printf("Message recieved ->%s\n", msg);
+		c = bin_to_ascii(msg);
+		ft_putchar(c);
 		free(msg);
 	}
 }
@@ -81,9 +84,10 @@ int	main(void)
 	pid = getpid();
 
 	ft_printf("%d\n", pid);
-	signal(SIGUSR1, signal_handler);
-	signal(SIGUSR2, signal_handler);
 	while (1)
-		continue ;
+	{
+		signal(SIGUSR1, signal_handler);
+		signal(SIGUSR2, signal_handler);
+	}
 	return (0);
 }
