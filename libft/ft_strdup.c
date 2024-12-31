@@ -6,7 +6,7 @@
 /*   By: safuente <safuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 18:08:32 by safuente          #+#    #+#             */
-/*   Updated: 2024/12/30 11:56:19 by safuente         ###   ########.fr       */
+/*   Updated: 2024/12/31 15:18:59 by safuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strdup(const char *s)
 	char	*copy;
 	int		i;
 
+	if (!s)
+		return (NULL);
 	i = 0;
 	copy = (char *) malloc ((ft_strlen(s) + 1) * sizeof(char));
 	if (copy == NULL)

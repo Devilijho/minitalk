@@ -6,7 +6,7 @@
 /*   By: safuente <safuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 12:16:07 by safuente          #+#    #+#             */
-/*   Updated: 2024/12/30 11:56:15 by safuente         ###   ########.fr       */
+/*   Updated: 2024/12/31 15:24:35 by safuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_strlen(const char *s)
 	size_t	i;
 
 	i = 0;
+	if (!s)
+		return (0);
 	while (s[i])
 		i++;
 	return (i);

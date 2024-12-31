@@ -6,13 +6,13 @@
 /*   By: safuente <safuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:40:43 by safuente          #+#    #+#             */
-/*   Updated: 2024/12/30 19:51:14 by safuente         ###   ########.fr       */
+/*   Updated: 2024/12/31 16:23:55 by safuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minitalk.h"
 
-int	binary_conv(int c)
+int	int_to_bin(int c)
 {
 	int	binary;
 	int	place;
@@ -34,10 +34,17 @@ int	binary_conv(int c)
 void	send_message(t_msg *signal)
 {
 	int	i;
+	int	l;
 
 	i = 0;
+	l = ft_strlen(signal->msg);
 	if (!signal->msg)
 		return ;
+	while (l++ < 8)
+	{
+		kill(signal->pid, SIGUSR1);
+		usleep(1);
+	}
 	while (signal->msg[i])
 	{
 		if (signal->msg[i] == '0')
@@ -52,14 +59,22 @@ void	send_message(t_msg *signal)
 int	main(int ac, char **av)
 {
 	t_msg	signal;
+	int		i;
 
+	i = 0;
 	if (ac < 3)
 		return (1);
 	signal.pid = ft_atoi(av[1]);
-	signal.bin = binary_conv(av[2][0]);
-	signal.msg = ft_itoa(signal.bin);
-	send_message(&signal);
-	ft_putstr(signal.msg);
-	free(signal.msg);
+	while (av[2][i])
+	{
+		ft_printf("Message n*%d sended\n", i);
+		signal.bin = int_to_bin(av[2][i]);
+		signal.msg = ft_itoa(signal.bin);
+		send_message(&signal);
+		ft_printf("Message sended ->%s\n", signal.msg);
+		free(signal.msg);
+		i++;
+		sleep(1);
+	}
 	return (0);
 }

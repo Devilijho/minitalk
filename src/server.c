@@ -6,36 +6,72 @@
 /*   By: safuente <safuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:40:48 by safuente          #+#    #+#             */
-/*   Updated: 2024/12/30 20:09:08 by safuente         ###   ########.fr       */
+/*   Updated: 2024/12/31 16:15:56 by safuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minitalk.h"
 
-void	signal_interpreter(int signal)
+int	ft_recursive_power(int nb, int power)
 {
-	static int	c;
+	if (power < 0)
+		return (0);
+	if (nb == 0 && power == 0)
+		return (1);
+	if (power == 1)
+		return (nb);
+	if (power == 0)
+		return (1);
+	nb = nb * (ft_recursive_power(nb, power - 1));
+	return (nb);
+}
 
-	if (!c)
-		c = 0;
-	if (signal == SIGUSR1)
+void	bin_to_ascii(char *msg)
+{
+	int	i;
+	int	c;
+	int	mul;
+
+	i = 0;
+	c = 0;
+	mul = ft_strlen(msg) - 1;
+	while (msg[i])
 	{
-		ft_printf("0");
-		c = c * 10 + 0;
+		c += ((msg[i] - 48) * ft_recursive_power(2, mul));
+		mul--;
+		i++;
 	}
-	else if (signal == SIGUSR2)
-	{
-		ft_printf("1");
-		c = c * 10 + 1;
-	}
+	ft_putchar(c);
+}
+
+char	*msg_assembler(int c)
+{
+	static char	*msg;
+	char		*temp;
+
+	if (!msg)
+		msg = ft_strdup("");
+	temp = msg;
+	if (c == SIGUSR1)
+		msg = ft_strjoin(temp, "0");
+	else if (c == SIGUSR2)
+		msg = ft_strjoin(temp, "1");
+	free(temp);
+	if (ft_strlen(msg) == 8)
+		return (msg);
+	return (NULL);
 }
 
 void	signal_handler(int signal)
 {
-	if (signal == SIGUSR1)
-		ft_printf("0");
-	else if (signal == SIGUSR2)
-		ft_printf("1");
+	char	*msg;
+
+	msg = msg_assembler(signal);
+	if (msg != NULL)
+	{
+		bin_to_ascii(msg);
+		free(msg);
+	}
 }
 
 int	main(void)
