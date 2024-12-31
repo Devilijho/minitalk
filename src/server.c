@@ -6,7 +6,7 @@
 /*   By: safuente <safuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:40:48 by safuente          #+#    #+#             */
-/*   Updated: 2024/12/31 17:15:04 by safuente         ###   ########.fr       */
+/*   Updated: 2024/12/31 17:28:09 by safuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ char	*msg_assembler(int c)
 {
 	static char	*msg;
 	char		*temp;
+	char		*copy;
 
-	ft_printf("%p\n",msg);
 	if (!msg)
 		msg = ft_strdup("");
 	temp = msg;
@@ -59,7 +59,11 @@ char	*msg_assembler(int c)
 		msg = ft_strjoin(temp, "1");
 	free(temp);
 	if (ft_strlen(msg) == 8)
-		return (msg);
+	{
+		copy = ft_strdup(msg);
+		msg = NULL;
+		return (copy);
+	}
 	return (NULL);
 }
 
@@ -69,9 +73,9 @@ void	signal_handler(int signal)
 	int		c;
 
 	msg = msg_assembler(signal);
-	if (msg != 0)
+	if (msg != NULL)
 	{
-		ft_printf("Message recieved ->%s\n", msg);
+		// ft_printf("Message recieved ->%s\n", msg);
 		c = bin_to_ascii(msg);
 		ft_putchar(c);
 		free(msg);

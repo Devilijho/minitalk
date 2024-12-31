@@ -6,7 +6,7 @@
 /*   By: safuente <safuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:40:43 by safuente          #+#    #+#             */
-/*   Updated: 2024/12/31 16:23:55 by safuente         ###   ########.fr       */
+/*   Updated: 2024/12/31 17:28:23 by safuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	main(int ac, char **av)
 		ft_printf("Message sended ->%s\n", signal.msg);
 		free(signal.msg);
 		i++;
-		sleep(1);
+		// sleep(1);//
 	}
 	return (0);
 }
