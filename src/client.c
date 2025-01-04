@@ -19,7 +19,6 @@ int	int_to_bin(int c)
 
 	binary = 0;
 	place = 1;
-
 	if (c == 0)
 		return (0);
 	while (c > 0)
@@ -74,7 +73,6 @@ int	main(int ac, char **av)
 		ft_printf("Message sended ->%s\n", signal.msg);
 		free(signal.msg);
 		i++;
-		// sleep(1);//
 	}
 	return (0);
 }

@@ -75,7 +75,6 @@ void	signal_handler(int signal)
 	msg = msg_assembler(signal);
 	if (msg != NULL)
 	{
-		// ft_printf("Message recieved ->%s\n", msg);
 		c = bin_to_ascii(msg);
 		ft_putchar(c);
 		free(msg);
@@ -88,7 +87,6 @@ int	main(void)
 	int			pid;
 
 	pid = getpid();
-
 	ft_printf("%d\n", pid);
 	while (1)
 	{
