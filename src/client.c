@@ -6,7 +6,7 @@
 /*   By: safuente <safuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:40:43 by safuente          #+#    #+#             */
-/*   Updated: 2025/01/04 12:02:37 by safuente         ###   ########.fr       */
+/*   Updated: 2025/01/04 12:08:53 by safuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,11 @@ int	main(int ac, char **av)
 	int		i;
 
 	i = 0;
-	if (ac < 3)
+	if (ac != 3)
+	{
+		ft_printf("Check your parameters!");
 		return (1);
+	}
 	signal.pid = ft_atoi(av[1]);
 	while (av[2][i])
 	{
