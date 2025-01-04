@@ -6,7 +6,7 @@
 #    By: safuente <safuente@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/17 18:06:19 by safuente          #+#    #+#              #
-#    Updated: 2024/12/30 13:24:34 by safuente         ###   ########.fr        #
+#    Updated: 2025/01/04 12:54:06 by safuente         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,7 +77,7 @@ all:		${NAME}
 $(NAME):	${OBJS}
 			${MAKE} -C ft_printf/
 			ar rcs ${NAME} ${OBJS} ${OBJS_PRINTF}
-			# cp ${PRINTF_LIB} ${NAME}
+			cp ${PRINTF_LIB} ${NAME}
 
 bonus:	${NAME} .bonus_done
 
