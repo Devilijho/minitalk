@@ -6,7 +6,7 @@
 /*   By: safuente <safuente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:40:43 by safuente          #+#    #+#             */
-/*   Updated: 2024/12/31 17:28:23 by safuente         ###   ########.fr       */
+/*   Updated: 2025/01/04 12:02:37 by safuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,9 @@ int	main(int ac, char **av)
 	signal.pid = ft_atoi(av[1]);
 	while (av[2][i])
 	{
-		ft_printf("Message n*%d sended\n", i);
 		signal.bin = int_to_bin(av[2][i]);
 		signal.msg = ft_itoa(signal.bin);
 		send_message(&signal);
-		ft_printf("Message sended ->%s\n", signal.msg);
 		free(signal.msg);
 		i++;
 	}
